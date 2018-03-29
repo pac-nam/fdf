@@ -6,7 +6,7 @@
 #    By: tbleuse <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/22 14:30:08 by tbleuse           #+#    #+#              #
-#    Updated: 2018/03/29 16:43:14 by tbleuse          ###   ########.fr        #
+#    Updated: 2018/03/29 17:39:23 by tbleuse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,12 +47,14 @@ $(NAME) : $(OBJ)
 
 clean :
 	@make clean -C $(LIBFT)
-	@/bin/rm -f $(OBJ) $(OBJ2) $(OBJ3)
+	@make clean -C $(MINILIBX)
+	@/bin/rm -f $(OBJ)
 	@echo "$(NAME) objects have been deleted"
 
 fclean : clean
 	@make fclean -C $(LIBFT)
-	@/bin/rm -f $(NAME) $(NAME2) $(NAME3)
+	@make clean -C $(MINILIBX)
+	@/bin/rm -f $(NAME)
 	@echo "$(NAME) have been deleted"
 
 re : fclean all

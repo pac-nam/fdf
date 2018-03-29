@@ -6,7 +6,7 @@
 /*   By: tbleuse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 14:35:54 by tbleuse           #+#    #+#             */
-/*   Updated: 2018/03/29 16:40:47 by tbleuse          ###   ########.fr       */
+/*   Updated: 2018/03/29 18:00:45 by tbleuse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static int	ft_number_of_number(char *str)
 	{
 		while (str[i] == ' ' || str[i] == '\t')
 			++i;
+		if (!str[i])
+			return (quantity);
 		if (str[i] == '-' || str[i] == '+')
 			++i;
 		if (!ft_isdigit(str[i]))
@@ -35,9 +37,29 @@ static int	ft_number_of_number(char *str)
 			++i;
 		++quantity;
 	}
-	if (str[i] == ' ' || str[i] == '\t' || str[i] == '-' || str[i] == '+')
-		return (quantity - 1);
 	return (quantity);
+}
+
+static int  ft_nb_line(char *file)
+{
+	int		fd;
+	int		ret;
+	int		count;
+	char	buf[GNL_BUFF_SIZE + 1];
+
+	count = 0;
+	if (!(fd = open(file, O_RDONLY)))
+		return (0);
+	while ((ret = read(fd, buf, GNL_BUFF_SIZE)) > 0)
+	{
+		while (--ret >= 0)
+			if (buf[ret] == '\n')
+				++count;
+	}
+	if (ret == -1)
+		return (-1);
+	close (fd);
+	return (count);
 }
 
 static int	ft_map_line(int **map, char *line)
@@ -62,29 +84,7 @@ static int	ft_map_line(int **map, char *line)
 		while (ft_isdigit(line[i]))
 			++i;
 	}
-		return (1);
-}
-
-static int	ft_nb_line(char *file)
-{
-	int		fd;
-	int		ret;
-	int		count;
-	char	buf[GNL_BUFF_SIZE + 1];
-
-	count = 0;
-	if (!(fd = open(file, O_RDONLY)))
-		return (0);
-	while ((ret = read(fd, buf, GNL_BUFF_SIZE)) > 0)
-	{
-		while (--ret >= 0)
-			if (buf[ret] == '\n')
-				++count;
-	}
-	if (ret == -1)
-		return (-1);
-	close (fd);
-	return (count);
+	return (1);
 }
 
 int		ft_init_map(char *file, int ***map)
@@ -106,10 +106,13 @@ int		ft_init_map(char *file, int ***map)
 	while ((ret = ft_gnl(fd, &line)) > 0)
 	{
 		if (!(ft_map_line(&((*map)[index++]), line)))
+		{
 			return (0);
+		}
 		ft_strdel(&line);
 	}
 	if (ret == -1)
 		return (0);
+	close(fd);
 	return (1);
 }
