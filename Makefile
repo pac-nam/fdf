@@ -6,7 +6,7 @@
 #    By: tbleuse <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/22 14:30:08 by tbleuse           #+#    #+#              #
-#    Updated: 2018/03/29 17:39:23 by tbleuse          ###   ########.fr        #
+#    Updated: 2018/03/30 14:39:14 by tbleuse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,8 @@ INCLUDE_MLX = -L $(MINILIBX) -lmlx -framework OpenGL -framework AppKit
 SRC_NAME =	main_fdf.c				\
 			ft_init_map.c			\
 			ft_print_int_tab.c		\
+			ft_fdf.c				\
+			ft_put_line.c			\
 
 SRC = $(addprefix fdf_functions/, $(SRC_NAME))
 
@@ -53,7 +55,6 @@ clean :
 
 fclean : clean
 	@make fclean -C $(LIBFT)
-	@make clean -C $(MINILIBX)
 	@/bin/rm -f $(NAME)
 	@echo "$(NAME) have been deleted"
 

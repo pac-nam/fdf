@@ -6,7 +6,7 @@
 /*   By: tbleuse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 13:24:14 by tbleuse           #+#    #+#             */
-/*   Updated: 2018/03/29 19:16:18 by tbleuse          ###   ########.fr       */
+/*   Updated: 2018/03/30 13:52:47 by tbleuse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,24 @@ int		deal_key(int key, void *stock)
 
 int		main(int ac, char **av)
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	t_stock	*stock;
+	t_stock	*s;
 
 	if (ac < 2)
 	{
 		write(2, "missing map\n", 12);
 		return (0);
 	}
-	if (!(stock = (t_stock*)malloc(sizeof(t_stock))) ||
-			!(ft_init_map(av[1], &stock->map)))
+	if (!(s = (t_stock*)malloc(sizeof(t_stock))) ||
+			!(ft_init_map(av[1], &s->map)))
 		return (0);
-	ft_print_int_tab(stock->map);
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "FDF");
-	mlx_key_hook(win_ptr, deal_key, stock);
-	mlx_loop(mlx_ptr);
+	ft_print_int_tab(s->map);
+	s->mlx = mlx_init();
+	s->win = mlx_new_window(s->mlx, WIN_WIDTH, WIN_HEIGHT, "FDF");
+	mlx_key_hook(s->win, deal_key, s);
+	if (!(ft_fdf(s)))
+	{
+		write(2, "Interruption involontaire du programme\n", 39);
+		return (0);
+	}
+	mlx_loop(s->mlx);
 }
