@@ -27,6 +27,7 @@ SRC_NAME =	main_fdf.c				\
 			ft_print_int_tab.c		\
 			ft_fdf.c				\
 			ft_put_line.c			\
+			ft_init_stock.c				\
 
 SRC = $(addprefix fdf_functions/, $(SRC_NAME))
 

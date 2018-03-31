@@ -42,11 +42,9 @@ int		main(int ac, char **av)
 		return (0);
 	}
 	if (!(s = (t_stock*)malloc(sizeof(t_stock))) ||
-			!(ft_init_map(av[1], &s->map)))
+			!(ft_init_stock(s, av[1])))
 		return (0);
 	ft_print_int_tab(s->map);
-	s->mlx = mlx_init();
-	s->win = mlx_new_window(s->mlx, WIN_WIDTH, WIN_HEIGHT, "FDF");
 	mlx_key_hook(s->win, deal_key, s);
 	if (!(ft_fdf(s)))
 	{

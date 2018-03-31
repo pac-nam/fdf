@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fdf.c                                           :+:      :+:    :+:   */
+/*   ft_abs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbleuse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,39 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/fdf.h"
-
-int		ft_fdf(t_stock *s)
+int	ft_abs(int nb)
 {
-	int	x1 = s->win_width / 2;
-	int	x2 = s->win_width / 2;
-	int	y1 = s->win_height / 2;
-	int	y2 = 0;
-	int	change = 1;
-
-	while (y2 <= y1)
-	{
-		ft_put_line(x1, y1, x2, y2, s);
-		x2 += change;
-		y2 += change;
-	}
-	while (y2 <= s->win_height)
-	{
-		ft_put_line(x1, y1, x2--, y2++, s);
-		x2 -= change;
-		y2 += change;
-	}
-	while (y2 >= y1)
-	{
-		ft_put_line(x1, y1, x2--, y2--, s);
-		x2 -= change;
-		y2 -= change;
-	}
-	while (y2 >= 0)
-	{
-		ft_put_line(x1, y1, x2++, y2--, s);
-		x2 += change;
-		y2 -= change;
-	}
-	return (1);
+	if (nb < 0)
+		return (-nb);
+	return (nb);
 }

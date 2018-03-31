@@ -16,19 +16,18 @@
 # include "../ressources/minilibx_macos/mlx.h"
 # include "../libft/header/libft.h"
 
-# define WIN_WIDTH 1000
-# define WIN_HEIGHT 900
-
 typedef struct	s_stock
 {
 		void	*mlx;
 		void	*win;
-		void	*img;
+		int	win_width;
+		int	win_height;
 		int		**map;
 		float	zoom;
 }				t_stock;
 
 int		ft_init_map(char *file, int ***map);
+int		ft_init_stock(t_stock *s, char *file);
 int		ft_print_int_tab(int **map);
 int		ft_fdf(t_stock *s);
 int		ft_put_line(int x1, int y1, int x2, int y2, t_stock *s);

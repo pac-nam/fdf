@@ -101,6 +101,7 @@ MATH_NAME	=	ft_bracket.c			\
 				ft_power.c				\
 				ft_random.c				\
 				ft_sort_int_tab.c		\
+				ft_abs.c		\
 
 PRINTF_NAME	=	ft_printf.c				\
 				ft_m_count.c            \
