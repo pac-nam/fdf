@@ -16,7 +16,7 @@ int		ft_fdf(t_stock *s)
 {
 	t_point		*p1;
 	t_point		*p2;
-	int		change = 3;
+	int		change = 1;
 
 	if (!(p1 = (t_point*)malloc(sizeof(t_point))) ||
 			!(p2 = (t_point*)malloc(sizeof(t_point))))
@@ -50,5 +50,6 @@ int		ft_fdf(t_stock *s)
 		p2->x += change;
 		p2->y -= change;
 	}
+	ft_put_line(p1, p2, s);
 	return (1);
 }

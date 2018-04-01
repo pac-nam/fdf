@@ -31,7 +31,7 @@ static int		ft_put_line_nne_ssw(t_point *p1, t_point *p2, t_stock *s)
 	{
 		while (e <= 0.5 && y >= p2->y)
 		{
-			mlx_pixel_put(s->mlx, s->win, x, y--, 0xFF0000);
+			mlx_pixel_put(s->mlx, s->win, x, y--, s->color);
 			e += to_add;
 		}
 		e -= 1;
@@ -58,7 +58,7 @@ static int		ft_put_line_nnw_sse(t_point *p1, t_point *p2, t_stock *s)
 	{
 		while (e <= 0.5 && y <= p2->y)
 		{
-			mlx_pixel_put(s->mlx, s->win, x, y++, 0x0000FF);
+			mlx_pixel_put(s->mlx, s->win, x, y++, s->color);
 			e += to_add;
 		}
 		e -= 1;
@@ -85,7 +85,7 @@ static int              ft_put_line_ene_wsw(t_point *p1, t_point *p2, t_stock *s
 	{
 		while (e <= 0.5 && x <= p2->x)
 		{
-			mlx_pixel_put(s->mlx, s->win, x++, y, 0x00FF00);
+			mlx_pixel_put(s->mlx, s->win, x++, y, s->color);
 			e += to_add;
 		}
 		e -= 1;
@@ -112,7 +112,7 @@ static int              ft_put_line_ese_wnw(t_point *p1, t_point *p2, t_stock *s
 	{
 		while (e <= 0.5 && x <= p2->x)
 		{
-			mlx_pixel_put(s->mlx, s->win, x++, y, 0xFFFF00);
+			mlx_pixel_put(s->mlx, s->win, x++, y, s->color);
 			e += to_add;
 		}
 		e -= 1;

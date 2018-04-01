@@ -22,6 +22,7 @@ typedef struct	s_stock
 		void	*win;
 		int	win_width;
 		int	win_height;
+		int	color;
 		int		**map;
 		float	zoom;
 }				t_stock;

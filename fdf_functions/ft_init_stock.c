@@ -16,6 +16,7 @@ int	ft_init_stock(t_stock *s, char *file)
 {
 	s->win_width = 500;
 	s->win_height = 500;
+	s->color = 0x00FFFF;
 	s->mlx = mlx_init();
         s->win = mlx_new_window(s->mlx, s->win_width, s->win_height, "FDF");
 	if (!(ft_init_map(file, &s->map)))
