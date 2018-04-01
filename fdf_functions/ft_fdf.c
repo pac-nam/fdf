@@ -14,35 +14,41 @@
 
 int		ft_fdf(t_stock *s)
 {
-	int	x1 = s->win_width / 2;
-	int	x2 = s->win_width / 2;
-	int	y1 = s->win_height / 2;
-	int	y2 = 0;
-	int	change = 3;
+	t_point		*p1;
+	t_point		*p2;
+	int		change = 3;
 
-	while (y2 <= y1)
+	if (!(p1 = (t_point*)malloc(sizeof(t_point))) ||
+			!(p2 = (t_point*)malloc(sizeof(t_point))))
+		return (0);
+	p1->x = s->win_width / 2;
+	p2->x = s->win_width / 2;
+	p1->y = s->win_height / 2;
+	p2->y = 0;
+
+	while (p2->y <= p1->y)
 	{
-		ft_put_line(x1, y1, x2, y2, s);
-		x2 += change;
-		y2 += change;
+		ft_put_line(p1, p2, s);
+		p2->x += change;
+		p2->y += change;
 	}
-	while (y2 <= s->win_height)
+	while (p2->y <= s->win_height)
 	{
-		ft_put_line(x1, y1, x2--, y2++, s);
-		x2 -= change;
-		y2 += change;
+		ft_put_line(p1, p2, s);
+		p2->x -= change;
+		p2->y += change;
 	}
-	while (y2 >= y1)
+	while (p2->y >= p1->y)
 	{
-		ft_put_line(x1, y1, x2--, y2--, s);
-		x2 -= change;
-		y2 -= change;
+		ft_put_line(p1, p2, s);
+		p2->x -= change;
+		p2->y -= change;
 	}
-	while (y2 >= 0)
+	while (p2->y >= 0)
 	{
-		ft_put_line(x1, y1, x2++, y2--, s);
-		x2 += change;
-		y2 -= change;
+		ft_put_line(p1, p2, s);
+		p2->x += change;
+		p2->y -= change;
 	}
 	return (1);
 }
