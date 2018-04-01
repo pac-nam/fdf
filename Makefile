@@ -63,4 +63,4 @@ re : fclean all
 
 programs : all clean
 
-.PHONY : all clean fclean re libft
+.PHONY : all clean fclean re libft $(MINILIBX)

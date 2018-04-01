@@ -18,7 +18,7 @@ int		ft_fdf(t_stock *s)
 	int	x2 = s->win_width / 2;
 	int	y1 = s->win_height / 2;
 	int	y2 = 0;
-	int	change = 1;
+	int	change = 3;
 
 	while (y2 <= y1)
 	{
