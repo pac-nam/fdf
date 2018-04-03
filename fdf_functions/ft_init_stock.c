@@ -6,7 +6,7 @@
 /*   By: tbleuse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 13:24:14 by tbleuse           #+#    #+#             */
-/*   Updated: 2018/03/30 13:52:47 by tbleuse          ###   ########.fr       */
+/*   Updated: 2018/04/03 21:26:55 by tbleuse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,19 @@ static int	ft_long_line(int **map)
 
 int	ft_init_stock(t_stock *s, char *file)
 {
-	s->win_width = 600;
-	s->win_height = 500;
+	s->win_height = 1000;
 	s->color = 0xFFFF00;
 	s->mlx = mlx_init();
-        s->win = mlx_new_window(s->mlx, s->win_width, s->win_height, "FDF");
 	if (!(ft_init_map(file, &s->map)))
 		return (0);
 	s->safe = 10;
 	s->dif_up = (s->win_height / 2 - s->safe) / s->map[0][0];
 	s->dif_right = (s->win_height / 2 - s->safe) / ft_long_line(s->map);
-	s->zoom = 1;
+	s->zoom = 2;
 	s->ref->x = s->safe;
 	s->ref->y = s->win_height / 2; 
+	s->win_width = (s->map[0][0] - 1) * s->dif_up +
+		(ft_long_line(s->map) - 1) * s->dif_right + s->safe * 2;
+	s->win = mlx_new_window(s->mlx, s->win_width, s->win_height, "FDF");
 	return (1);
 }
