@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fdf.c                                           :+:      :+:    :+:   */
+/*   test_put_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbleuse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,44 +12,44 @@
 
 #include "../header/fdf.h"
 
-int		ft_write_map(t_point *p1, t_point *p2, t_stock *s)
-{
-	int	y_map;
-	int	x_map;
-
-	y_map = 0;
-	while (++y_map <= s->map[0][0])
-	{
-		x_map = 0;
-		while (++x_map <= s->map[y_map][0])
-		{
-			if (x_map < s->map[y_map][0])
-			{
-				p1->x = s->ref->x + (x_map + y_map - 2) * s->dif_right;
-				p1->y = s->ref->y - (x_map - y_map - 2) * s->dif_right - s->map[y_map][x_map - 1];
-				p2->x = p1->x + s->dif_right;
-				p2->y = p1->y - s->dif_right - s->map[y_map][x_map] * s->zoom;
-				ft_put_line(p1, p2, s);
-			}
-			if (y_map < s->map[0][0] && x_map <= s->map[y_map + 1][0])
-			{
-				p2->x = p1->x + s->dif_up;
-				p2->y = p1->y + s->dif_right - s->map[y_map + 1][x_map] * s->zoom;
-				ft_put_line(p1, p2, s);
-			}
-		}
-	}
-	return (1);
-}
-
-int		ft_fdf(t_stock *s)
+int		test_put_line(t_stock *s)
 {
 	t_point		*p1;
 	t_point		*p2;
+	int		change = 1;
 
 	if (!(p1 = (t_point*)malloc(sizeof(t_point))) ||
 			!(p2 = (t_point*)malloc(sizeof(t_point))))
 		return (0);
-	ft_write_map(p1, p2, s);
+	p1->x = s->win_width / 2;
+	p2->x = s->win_width / 2;
+	p1->y = s->win_height / 2;
+	p2->y = 0;
+
+	while (p2->y <= p1->y)
+	{
+		ft_put_line(p1, p2, s);
+		p2->x += change;
+		p2->y += change;
+	}
+	while (p2->y <= s->win_height)
+	{
+		ft_put_line(p1, p2, s);
+		p2->x -= change;
+		p2->y += change;
+	}
+	while (p2->y >= p1->y)
+	{
+		ft_put_line(p1, p2, s);
+		p2->x -= change;
+		p2->y -= change;
+	}
+	while (p2->y >= 0)
+	{
+		ft_put_line(p1, p2, s);
+		p2->x += change;
+		p2->y -= change;
+	}
+	ft_put_line(p1, p2, s);
 	return (1);
 }

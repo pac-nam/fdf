@@ -24,11 +24,21 @@ static void	ft_end_fdf(t_stock *stock)
 	exit (0);
 }
 
-int		deal_key(int key, void *stock)
+static void	ft_modif_stock(int key, t_stock *s)
+{
+	if (key == 26)
+		++s->zoom;
+	if (key == 25)
+		--s->zoom;
+}
+
+int		deal_key(int key, void *s)
 {
 	ft_printf("%d\n", key);
+	if (key == 25 || key == 26)
+		ft_modif_stock(key, s);
 	if (key == 53)
-		ft_end_fdf(stock);
+		ft_end_fdf(s);
 	return (0);
 }
 
@@ -42,6 +52,7 @@ int		main(int ac, char **av)
 		return (0);
 	}
 	if (!(s = (t_stock*)malloc(sizeof(t_stock))) ||
+			!(s->ref = (t_point*)malloc(sizeof(t_point))) ||
 			!(ft_init_stock(s, av[1])))
 		return (0);
 	ft_print_int_tab(s->map);

@@ -16,6 +16,12 @@
 # include "../ressources/minilibx_macos/mlx.h"
 # include "../libft/header/libft.h"
 
+typedef struct	s_point
+{
+	int	x;
+	int	y;
+}		t_point;
+
 typedef struct	s_stock
 {
 		void	*mlx;
@@ -24,14 +30,12 @@ typedef struct	s_stock
 		int	win_height;
 		int	color;
 		int		**map;
+		int	safe;
+		int	dif_up;
+		int	dif_right;
 		float	zoom;
+		t_point	*ref;
 }				t_stock;
-
-typedef struct	s_point
-{
-	int	x;
-	int	y;
-}		t_point;
 
 int		ft_init_map(char *file, int ***map);
 int		ft_init_stock(t_stock *s, char *file);
