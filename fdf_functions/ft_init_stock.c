@@ -27,19 +27,25 @@ static int	ft_long_line(int **map)
 
 int	ft_init_stock(t_stock *s, char *file)
 {
-	s->win_height = 1000;
-	s->color = 0xFFFF00;
+	float	angle;
+
+	angle = 2;
+	s->win_height = 600;
 	s->mlx = mlx_init();
 	if (!(ft_init_map(file, &s->map)))
 		return (0);
 	s->safe = 10;
-	s->dif_up = (s->win_height / 2 - s->safe) / s->map[0][0];
-	s->dif_right = (s->win_height / 2 - s->safe) / ft_long_line(s->map);
+	s->dif_up_y = (s->win_height / 2 - s->safe) / s->map[0][0];
+	s->dif_up_x = s->dif_up_y * angle;
+	s->dif_right_y = (s->win_height / 2 - s->safe) / ft_long_line(s->map);
+	s->dif_right_x = s->dif_right_y * angle;
 	s->zoom = 2;
 	s->ref->x = s->safe;
 	s->ref->y = s->win_height / 2; 
-	s->win_width = (s->map[0][0] - 1) * s->dif_up +
-		(ft_long_line(s->map) - 1) * s->dif_right + s->safe * 2;
+	s->win_width = (s->map[0][0] - 1) * s->dif_up_x +
+		(ft_long_line(s->map) - 1) * s->dif_right_x + s->safe * 2;
+	if (s->win_width > 1300)
+		s->win_width = 1300;
 	s->win = mlx_new_window(s->mlx, s->win_width, s->win_height, "FDF");
 	return (1);
 }

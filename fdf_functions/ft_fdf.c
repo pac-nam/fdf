@@ -23,26 +23,26 @@ int		ft_write_map(t_point *p1, t_point *p2, t_stock *s)
 		x_map = 0;
 		while (++x_map <= s->map[y_map][0])
 		{
-			p1->x = s->ref->x + (x_map - 1) * s->dif_right;
-			p1->y = s->ref->y - (x_map - 1) * s->dif_right -
+			p1->x = s->ref->x + (x_map - 1) * s->dif_right_x;
+			p1->y = s->ref->y - (x_map - 1) * s->dif_right_y -
 				s->map[y_map][x_map] * s->zoom;
 			if (x_map < s->map[y_map][0])
 			{
-				p2->x = s->ref->x + (x_map) * s->dif_right;
-				p2->y = s->ref->y - (x_map) * s->dif_right -
+				p2->x = s->ref->x + (x_map) * s->dif_right_x;
+				p2->y = s->ref->y - (x_map) * s->dif_right_y -
 					s->map[y_map][x_map + 1] * s->zoom;
 				ft_put_line(p1, p2, s);
 			}
 			if (y_map < s->map[0][0] && x_map <= s->map[y_map + 1][0])
 			{
-				p2->x = p1->x + s->dif_up;
-				p2->y = s->ref->y - (x_map - 1) * s->dif_right + s->dif_up -
+				p2->x = p1->x + s->dif_up_x;
+				p2->y = s->ref->y - (x_map - 1) * s->dif_right_y + s->dif_up_y -
 					s->map[y_map + 1][x_map] * s->zoom;
 				ft_put_line(p1, p2, s);
 			}
 		}
-		s->ref->x += s->dif_up;
-		s->ref->y += s->dif_up;
+		s->ref->x += s->dif_up_x;
+		s->ref->y += s->dif_up_y;
 	}
 	return (1);
 }

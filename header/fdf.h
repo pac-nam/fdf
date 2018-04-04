@@ -28,11 +28,12 @@ typedef struct	s_stock
 		void	*win;
 		int	win_width;
 		int	win_height;
-		int	color;
 		int		**map;
 		int	safe;
-		int	dif_up;
-		int	dif_right;
+		int	dif_up_x;
+		int	dif_up_y;
+		int	dif_right_x;
+		int	dif_right_y;
 		float	zoom;
 		t_point	*ref;
 }				t_stock;

@@ -26,16 +26,16 @@ static void	ft_end_fdf(t_stock *stock)
 
 static void	ft_modif_stock(int key, t_stock *s)
 {
-	if (key == 26)
+	if (key == 126)
 		++s->zoom;
-	if (key == 25)
+	if (key == 125)
 		--s->zoom;
 }
 
 int		deal_key(int key, void *s)
 {
 	ft_printf("%d\n", key);
-	if (key == 25 || key == 26)
+	if (key == 125 || key == 126)
 		ft_modif_stock(key, s);
 	if (key == 53)
 		ft_end_fdf(s);

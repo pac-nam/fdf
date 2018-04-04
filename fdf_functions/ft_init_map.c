@@ -107,6 +107,7 @@ int		ft_init_map(char *file, int ***map)
 	{
 		if (!(ft_map_line(&((*map)[index++]), line)))
 		{
+			ft_putstr("wrong character in file\n");
 			return (0);
 		}
 		ft_strdel(&line);

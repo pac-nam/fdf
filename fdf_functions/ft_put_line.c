@@ -117,6 +117,10 @@ int				ft_put_line(t_point *p1, t_point *p2, t_stock *s)
 {
 	t_point	*tmp;
 
+	if ((p1->x < 0 && p2->x < 0) || (p1->y < 0 && p2->y < 0) ||
+			(p1->x > s->win_width && p2->x > s->win_width) ||
+			(p1->y > s->win_height && p2->y > s->win_height))
+		return (0);
 	if (p1->x > p2->x)
 	{
 		tmp = p1;
