@@ -6,7 +6,7 @@
 /*   By: tbleuse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 13:46:17 by tbleuse           #+#    #+#             */
-/*   Updated: 2018/04/03 21:11:33 by tbleuse          ###   ########.fr       */
+/*   Updated: 2018/04/16 15:03:32 by tbleuse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int		ft_write_map(t_point *p1, t_point *p2, t_stock *s)
 	int	x_map;
 
 	y_map = 0;
+//	ft_printf("segy86\n");
 	while (++y_map <= s->map[0][0])
 	{
 		x_map = 0;

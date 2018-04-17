@@ -6,7 +6,7 @@
 /*   By: tbleuse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 13:24:14 by tbleuse           #+#    #+#             */
-/*   Updated: 2018/04/03 21:26:55 by tbleuse          ###   ########.fr       */
+/*   Updated: 2018/04/17 12:32:44 by tbleuse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,25 @@ int	ft_init_stock(t_stock *s, char *file)
 	float	angle;
 
 	angle = 2;
-	s->win_height = 600;
+	s->zoom = 6;
+	s->win_height = 1000;
+	s->safe = 10;
+	s->cam_x = 0;
+	s->cam_y = 0;
+	s->cam_dif = 50;
 	s->mlx = mlx_init();
 	if (!(ft_init_map(file, &s->map)))
 		return (0);
-	s->safe = 10;
 	s->dif_up_y = (s->win_height / 2 - s->safe) / s->map[0][0];
 	s->dif_up_x = s->dif_up_y * angle;
 	s->dif_right_y = (s->win_height / 2 - s->safe) / ft_long_line(s->map);
 	s->dif_right_x = s->dif_right_y * angle;
-	s->zoom = 2;
 	s->ref->x = s->safe;
 	s->ref->y = s->win_height / 2; 
 	s->win_width = (s->map[0][0] - 1) * s->dif_up_x +
 		(ft_long_line(s->map) - 1) * s->dif_right_x + s->safe * 2;
-	if (s->win_width > 1300)
-		s->win_width = 1300;
+	if (s->win_width > 2 * s->win_height)
+		s->win_width = 2 * s->win_height;
 	s->win = mlx_new_window(s->mlx, s->win_width, s->win_height, "FDF");
 	return (1);
 }

@@ -6,7 +6,7 @@
 #    By: tbleuse <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/22 14:30:08 by tbleuse           #+#    #+#              #
-#    Updated: 2018/03/30 14:39:14 by tbleuse          ###   ########.fr        #
+#    Updated: 2018/04/16 14:53:32 by tbleuse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ SRC_NAME =	main_fdf.c				\
 			ft_print_int_tab.c		\
 			ft_fdf.c				\
 			ft_put_line.c			\
-			ft_init_stock.c				\
+			ft_init_stock.c			\
+			ft_all_screen.c			\
 
 SRC = $(addprefix fdf_functions/, $(SRC_NAME))
 
