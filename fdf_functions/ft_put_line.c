@@ -6,20 +6,18 @@
 /*   By: tbleuse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 14:08:51 by tbleuse           #+#    #+#             */
-/*   Updated: 2018/03/30 18:07:14 by tbleuse          ###   ########.fr       */
+/*   Updated: 2018/04/23 15:04:59 by tbleuse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/fdf.h"
 
-#include <stdio.h>
-//		ROUGE
 static int		ft_put_line_nne_ssw(t_point *p1, t_point *p2, t_stock *s)
 {
-	float   e;
-	float   to_add;
-	int	x;
-	int	y;
+	float	e;
+	float	to_add;
+	int		x;
+	int		y;
 
 	e = 0;
 	to_add = 1 / -((float)(p2->y - p1->y) / (float)(p2->x - p1->x));
@@ -38,13 +36,12 @@ static int		ft_put_line_nne_ssw(t_point *p1, t_point *p2, t_stock *s)
 	return (1);
 }
 
-//		BLEU
 static int		ft_put_line_nnw_sse(t_point *p1, t_point *p2, t_stock *s)
 {
 	float	e;
 	float	to_add;
-	int	x;
-	int	y;
+	int		x;
+	int		y;
 
 	e = 0;
 	to_add = 1 / ((float)(p2->y - p1->y) / (float)(p2->x - p1->x));
@@ -63,13 +60,12 @@ static int		ft_put_line_nnw_sse(t_point *p1, t_point *p2, t_stock *s)
 	return (1);
 }
 
-//              VERT
-static int              ft_put_line_ene_wsw(t_point *p1, t_point *p2, t_stock *s)
+static int		ft_put_line_ene_wsw(t_point *p1, t_point *p2, t_stock *s)
 {
-	float   e;
-	float   to_add;
-	int	x;
-	int	y;
+	float	e;
+	float	to_add;
+	int		x;
+	int		y;
 
 	e = 0;
 	to_add = -((float)(p2->y - p1->y) / (float)(p2->x - p1->x));
@@ -88,13 +84,12 @@ static int              ft_put_line_ene_wsw(t_point *p1, t_point *p2, t_stock *s
 	return (1);
 }
 
-//              JAUNE
-static int              ft_put_line_ese_wnw(t_point *p1, t_point *p2, t_stock *s)
+static int		ft_put_line_ese_wnw(t_point *p1, t_point *p2, t_stock *s)
 {
-	float   e;
-	float   to_add;
-	int	x;
-	int	y;
+	float	e;
+	float	to_add;
+	int		x;
+	int		y;
 
 	e = 0;
 	to_add = ((float)(p2->y - p1->y) / (float)(p2->x - p1->x));

@@ -6,7 +6,7 @@
 /*   By: tbleuse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 13:24:14 by tbleuse           #+#    #+#             */
-/*   Updated: 2018/04/16 15:46:37 by tbleuse          ###   ########.fr       */
+/*   Updated: 2018/04/23 15:09:02 by tbleuse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,33 +21,39 @@ static void	ft_end_fdf(t_stock *stock)
 	ft_memdel((void**)&stock->map);
 	ft_memdel((void**)&stock);
 	ft_putstr("Interruption du programme \"fdf\"\n");
-	exit (0);
+	exit(0);
 }
 
-static int	ft_modif_stock(int key, t_stock *s)
+static int	ft_modif_key(int key, t_stock *s)
 {
 	if (key == 123)
 		--s->cam_x;
-	if (key == 124)
+	else if (key == 124)
 		++s->cam_x;
-	if (key == 125)
+	else if (key == 125)
 		++s->cam_y;
-	if (key == 126)
+	else if (key == 126)
 		--s->cam_y;
-	if (key == 89)
+	else if (key == 89)
 		++s->zoom;
-	if (key == 86)
+	else if (key == 86)
 		--s->zoom;
-	if (key == 91)
+	else if (key == 91)
 	{
 		s->dif_right_y += 10;
 		s->dif_up_y += 10;
 	}
-	if (key == 87)
+	else if (key == 87)
 	{
 		s->dif_right_y -= 10;
 		s->dif_up_y -= 10;
 	}
+	return (1);
+}
+
+static int	ft_modif_stock(int key, t_stock *s)
+{
+	ft_modif_key(key, s);
 	s->ref->x = s->safe + (s->cam_x * s->cam_dif);
 	s->ref->y = s->win_height / 2 + (s->cam_y * s->cam_dif);
 	ft_all_screen(s, 0);
@@ -55,12 +61,12 @@ static int	ft_modif_stock(int key, t_stock *s)
 	{
 		write(2, "Interruption involontaire du programme\n", 39);
 		return (0);
-	 }
+	}
 	ft_printf("refresh\n", key);
 	return (1);
 }
 
-int		deal_key(int key, void *s)
+int			deal_key(int key, void *s)
 {
 	ft_printf("%d\n", key);
 	if ((123 <= key && key <= 126) || (86 <= key && key <= 92))
@@ -71,7 +77,7 @@ int		deal_key(int key, void *s)
 	return (1);
 }
 
-int		main(int ac, char **av)
+int			main(int ac, char **av)
 {
 	t_stock	*s;
 

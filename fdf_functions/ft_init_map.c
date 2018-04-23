@@ -6,7 +6,7 @@
 /*   By: tbleuse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 14:35:54 by tbleuse           #+#    #+#             */
-/*   Updated: 2018/03/29 18:00:45 by tbleuse          ###   ########.fr       */
+/*   Updated: 2018/04/23 15:12:12 by tbleuse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	ft_number_of_number(char *str)
 	return (quantity);
 }
 
-static int  ft_nb_line(char *file)
+static int	ft_nb_line(char *file)
 {
 	int		fd;
 	int		ret;
@@ -58,7 +58,7 @@ static int  ft_nb_line(char *file)
 	}
 	if (ret == -1)
 		return (-1);
-	close (fd);
+	close(fd);
 	return (count);
 }
 
@@ -87,7 +87,15 @@ static int	ft_map_line(int **map, char *line)
 	return (1);
 }
 
-int		ft_init_map(char *file, int ***map)
+static int	ft_end_init_map(int ret, int fd)
+{
+	if (ret == -1)
+		return (0);
+	close(fd);
+	return (1);
+}
+
+int			ft_init_map(char *file, int ***map)
 {
 	int		fd;
 	int		ret;
@@ -112,8 +120,5 @@ int		ft_init_map(char *file, int ***map)
 		}
 		ft_strdel(&line);
 	}
-	if (ret == -1)
-		return (0);
-	close(fd);
-	return (1);
+	return (ft_end_init_map(ret, fd));
 }
