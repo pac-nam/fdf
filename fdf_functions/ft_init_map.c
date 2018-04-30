@@ -6,7 +6,7 @@
 /*   By: tbleuse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 14:35:54 by tbleuse           #+#    #+#             */
-/*   Updated: 2018/04/23 15:12:12 by tbleuse          ###   ########.fr       */
+/*   Updated: 2018/04/30 11:03:03 by tbleuse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ static int	ft_map_line(int **map, char *line)
 			++i;
 		if (line[i] == '-' || line[i] == '+' || ft_isdigit(line[i]))
 			(*map)[index++] = ft_atoi(&(line[i++]));
+		else
+			return (0);
 		while (ft_isdigit(line[i]))
 			++i;
 	}
