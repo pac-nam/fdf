@@ -6,7 +6,7 @@
 /*   By: tbleuse <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 13:46:17 by tbleuse           #+#    #+#             */
-/*   Updated: 2018/04/23 15:47:44 by tbleuse          ###   ########.fr       */
+/*   Updated: 2018/04/30 10:55:46 by tbleuse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,7 @@ int			ft_fdf(t_stock *s)
 			!(p2 = (t_point*)malloc(sizeof(t_point))))
 		return (0);
 	ft_write_map(p1, p2, s);
+	free(p1);
+	free(p2);
 	return (1);
 }
